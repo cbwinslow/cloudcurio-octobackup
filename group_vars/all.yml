@@ -1,0 +1,19 @@
+---
+project_name: "apache_stack"
+server_admin: "webmaster@cloudcurio.cc"
+server_name: "www.cloudcurio.cc"
+apache_listen_port: 80
+apache_ssl_port: 443
+docroot: "/var/www/{{ server_name }}/public_html"
+logroot: "/var/www/{{ server_name }}/logs"
+enable_tls: false
+enable_firewall: true
+manage_user: true
+primary_user: "cbwinslow"
+primary_user_pubkey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINIEs0Bgiq6JOaoYOUUcJgsgIs1MM0KqhwTF5W+Y1Hq3"
+apache_modules_debian: ["rewrite", "headers"]
+firewall_allowed_ports:
+  - "{{ apache_listen_port }}"
+  - "{{ apache_ssl_port }}"
+contact_email: "blaine.winslow@gmail.com"
+certbot_staging: true

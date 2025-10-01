@@ -1,0 +1,4 @@
+---
+- name: Stub oauth2-proxy task (replace with full in previous build)
+  ansible.builtin.debug:
+    msg: "oauth2-proxy would be installed and Apache wired here."

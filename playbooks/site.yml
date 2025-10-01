@@ -1,0 +1,10 @@
+
+---
+- name: Extended stack
+  hosts: web
+  gather_facts: true
+  become: true
+  roles:
+    - { role: prometheus_apache_exporter, when: enable_prometheus_exporter | bool }
+    - { role: modsecurity_crs, when: enable_modsecurity_crs | bool }
+    - { role: oauth2_proxy, when: enable_oauth2_proxy | bool }

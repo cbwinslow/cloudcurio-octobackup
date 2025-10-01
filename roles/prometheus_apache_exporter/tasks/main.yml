@@ -1,0 +1,4 @@
+---
+- name: Stub exporter task (replace with full in previous build)
+  ansible.builtin.debug:
+    msg: "Prometheus Apache exporter would be installed here."

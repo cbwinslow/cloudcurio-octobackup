@@ -1,0 +1,1 @@
+# Archived v1 worker placeholder – superseded by worker/review_worker_v2.py

@@ -1,0 +1,4 @@
+---
+- name: Stub CRS task (replace with full in previous build)
+  ansible.builtin.debug:
+    msg: "OWASP CRS would be installed and configured here."

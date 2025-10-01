@@ -1,0 +1,6 @@
+ruff
+bandit
+semgrep
+GitPython
+crewai
+markdown-it-py

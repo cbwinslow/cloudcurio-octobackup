@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../consolidated_projects/other-projects/apache-pro-stack-cloudcurio-plus"
+		},
+		{
+			"path": "../consolidated_projects/other-projects/ansible-apache-stack-cloudcurio"
+		}
+	],
+	"settings": {}
+}
