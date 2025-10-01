@@ -1,0 +1,24 @@
+---
+- name: Run app tests
+  shell: cd /opt/cloudcurio && pnpm test
+  when: run_app_tests
+
+- name: Run worker tests
+  shell: |
+    cd /opt/cloudcurio/worker
+    source venv/bin/activate
+    pytest -v
+  when: run_worker_tests
+
+- name: Run deployment validation
+  shell: cd /opt/cloudcurio && bash tests/infra/deployment.test.sh
+  when: run_deployment_tests
+
+- name: Check for errors in logs
+  shell: journalctl -u cloudcurio-app -n 50 | grep -i error || true
+  register: app_errors
+  failed_when: "'ERROR' in app_errors.stdout"
+
+- name: Validate Pydantic models
+  shell: cd /opt/cloudcurio/worker && python -c "from pydantic_models import User; User(name='test', email='test@test.com')"
+  when: validate_pydantic

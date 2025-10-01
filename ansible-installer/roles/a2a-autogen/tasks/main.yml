@@ -1,0 +1,7 @@
+---
+- name: Install AutoGen for A2A multi-agent
+  pip:
+    name: pyautogen
+    state: present
+  become: yes
+  when: install_a2a_autogen

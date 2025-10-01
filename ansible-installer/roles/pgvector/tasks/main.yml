@@ -1,0 +1,7 @@
+---
+- name: Install pgvector extension
+  become: yes
+  become_user: postgres
+  shell: |
+    psql -d {{ db_name | default('cloudcurio') }} -c "CREATE EXTENSION IF NOT EXISTS vector;"
+  when: install_pgvector

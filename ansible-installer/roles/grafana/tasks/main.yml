@@ -1,0 +1,29 @@
+---
+- name: Add Grafana repository
+  apt_repository:
+    repo: deb https://packages.grafana.com/oss/deb stable main
+    state: present
+  become: yes
+  when: install_grafana
+
+- name: Add Grafana GPG key
+  apt_key:
+    url: https://packages.grafana.com/gpg.key
+    state: present
+  become: yes
+  when: install_grafana
+
+- name: Install Grafana
+  apt:
+    name: grafana
+    state: present
+  become: yes
+  when: install_grafana
+
+- name: Start Grafana
+  systemd:
+    name: grafana-server
+    state: started
+    enabled: yes
+  become: yes
+  when: install_grafana

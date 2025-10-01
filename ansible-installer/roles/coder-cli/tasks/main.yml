@@ -1,0 +1,5 @@
+---
+- name: Install Coder CLI
+  shell: curl -fsSL https://coder.com/install.sh | sh
+  become: yes
+  when: install_coder_cli

@@ -1,0 +1,22 @@
+---
+- name: Install Java for Spark
+  apt:
+    name: openjdk-11-jdk
+    state: present
+  become: yes
+  when: install_apache_spark
+
+- name: Download Spark
+  get_url:
+    url: https://downloads.apache.org/spark/spark-3.5.3/spark-3.5.3-bin-hadoop3.tgz
+    dest: /tmp/spark.tgz
+  when: install_apache_spark
+
+- name: Extract Spark
+  unarchive:
+    src: /tmp/spark.tgz
+    dest: /opt/
+    remote_src: yes
+  when: install_apache_spark
+
+# Note: Spark typically run as service or cluster; basic setup here

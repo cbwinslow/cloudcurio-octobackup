@@ -1,0 +1,6 @@
+---
+- name: Install Pulumi
+  shell: |
+    curl -fsSL https://get.pulumi.com/ | sh
+    export PATH=$PATH:$HOME/.pulumi/bin
+  when: install_pulumi

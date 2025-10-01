@@ -1,0 +1,13 @@
+---
+- name: Install Terraform
+  shell: |
+    wget https://releases.hashicorp.com/terraform/1.9.5/terraform_1.9.5_linux_amd64.zip
+    unzip terraform_1.9.5_linux_amd64.zip
+    sudo mv terraform /usr/local/bin/
+  when: install_terraform_cloudflare
+
+- name: Install Cloudflare Terraform provider (via init in project, but basic install here)
+  shell: terraform init  # Assumes a tf file exists; customize per project
+  args:
+    chdir: /opt/terraform-cloudflare
+  when: install_terraform_cloudflare

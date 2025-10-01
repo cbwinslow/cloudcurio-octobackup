@@ -1,0 +1,30 @@
+---
+- name: Add Kong repository
+  apt_repository:
+    repo: deb https://packages.konghq.com/public/apt/ubuntu/ {{ ansible_distribution_release }} main
+    state: present
+  become: yes
+  when: install_kong
+
+- name: Install Kong
+  apt:
+    name: kong
+    state: present
+  become: yes
+  when: install_kong
+
+- name: Configure Kong (basic)
+  template:
+    src: kong.yml.j2  # kong.conf template
+    dest: /etc/kong/kong.conf
+  become: yes
+  notify: restart kong
+  when: install_kong
+
+- name: Start Kong
+  systemd:
+    name: kong
+    state: started
+    enabled: yes
+  become: yes
+  when: install_kong

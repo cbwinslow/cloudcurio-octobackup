@@ -1,0 +1,8 @@
+---
+- name: Install Langfuse
+  shell: |
+    git clone https://github.com/langfuse/langfuse /opt/langfuse
+    cd /opt/langfuse
+    docker compose up -d  # But baremetal; adjust to npm if possible
+  when: install_langfuse
+  # Note: Langfuse is Docker-heavy; consider baremetal alternative or skip

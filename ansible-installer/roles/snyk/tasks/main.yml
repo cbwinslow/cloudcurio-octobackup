@@ -1,0 +1,5 @@
+---
+- name: Install Snyk CLI
+  shell: npm install -g snyk
+  become: yes
+  when: install_snyk

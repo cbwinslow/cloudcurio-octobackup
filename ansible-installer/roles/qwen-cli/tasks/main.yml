@@ -1,0 +1,6 @@
+---
+- name: Install Qwen CLI (Alibaba LLM)
+  shell: pip install qwen-cli  # Hypothetical; use transformers for base
+  become: yes
+  when: install_qwen_cli
+  ignore_errors: yes

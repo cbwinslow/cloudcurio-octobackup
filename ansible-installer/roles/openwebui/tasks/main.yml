@@ -1,0 +1,8 @@
+---
+- name: Install Open WebUI
+  shell: |
+    git clone https://github.com/open-webui/open-webui /opt/open-webui
+    cd /opt/open-webui
+    npm install
+    npm run build
+  when: install_openwebui

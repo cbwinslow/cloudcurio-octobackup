@@ -1,0 +1,12 @@
+---
+- name: Install Bun
+  shell: curl -fsSL https://bun.sh/install | bash
+  when: install_bun
+  args:
+    creates: /root/.bun/_bun
+
+- name: Add Bun to PATH
+  lineinfile:
+    path: /etc/profile
+    line: 'export PATH="$HOME/.bun/bin:$PATH"'
+  become: yes

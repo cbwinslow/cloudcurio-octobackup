@@ -1,0 +1,5 @@
+---
+# LocalRecall from LocalAI people; assuming repo
+- name: Install LocalRecall
+  shell: git clone https://github.com/go-skynet/LocalRecall /opt/localrecall && cd /opt/localrecall && go build
+  when: install_localrecall

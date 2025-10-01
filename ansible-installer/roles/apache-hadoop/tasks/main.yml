@@ -1,0 +1,22 @@
+---
+- name: Install Java for Hadoop
+  apt:
+    name: openjdk-11-jdk
+    state: present
+  become: yes
+  when: install_apache_hadoop
+
+- name: Download Hadoop
+  get_url:
+    url: https://downloads.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
+    dest: /tmp/hadoop.tar.gz
+  when: install_apache_hadoop
+
+- name: Extract Hadoop
+  unarchive:
+    src: /tmp/hadoop.tar.gz
+    dest: /opt/
+    remote_src: yes
+  when: install_apache_hadoop
+
+# Note: Hadoop requires cluster config; basic install

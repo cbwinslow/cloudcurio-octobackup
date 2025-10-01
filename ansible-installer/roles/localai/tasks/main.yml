@@ -1,0 +1,19 @@
+---
+- name: Install LocalAI (baremetal via build)
+  shell: |
+    git clone https://github.com/mudler/LocalAI /opt/LocalAI
+    cd /opt/LocalAI
+    make build
+  when: install_localai
+
+- name: Install LocalRecall (from LocalAI providers)
+  shell: |
+    git clone https://github.com/go-skynet/LocalRecall.git /opt/localrecall
+    cd /opt/localrecall
+    go build -o localrecall
+    # Integrate with LocalAI for RAG/embeddings
+  when: install_localai
+
+- name: Pull embeddings model to LocalAI
+  shell: local-ai models pull all-MiniLM-L6-v2  # Assuming LocalAI CLI
+  when: install_localai

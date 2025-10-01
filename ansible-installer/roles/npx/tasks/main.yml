@@ -1,0 +1,4 @@
+---
+- name: npx is included with npm; verify
+  shell: npx --version
+  when: install_npx

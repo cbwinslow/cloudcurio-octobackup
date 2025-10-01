@@ -1,0 +1,8 @@
+---
+- name: Install Langfuse (enhanced for multi-agent)
+  shell: |
+    git clone https://github.com/langfuse/langfuse /opt/langfuse
+    cd /opt/langfuse
+    npm install
+    # Configure for agents (env vars for tracing)
+  when: install_multiagent_langfuse

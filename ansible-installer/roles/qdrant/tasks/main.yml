@@ -1,0 +1,41 @@
+---
+- name: Download and install Qdrant
+  get_url:
+    url: https://github.com/qdrant/qdrant/releases/download/v1.10.1/qdrant-x86_64-unknown-linux-gnu.tar.gz
+    dest: /tmp/qdrant.tar.gz
+  when: install_qdrant
+
+- name: Extract Qdrant
+  unarchive:
+    src: /tmp/qdrant.tar.gz
+    dest: /opt/
+    remote_src: yes
+  when: install_qdrant
+
+- name: Create systemd service for Qdrant
+  copy:
+    content: |
+      [Unit]
+      Description=Qdrant
+      After=network.target
+
+      [Service]
+      Type=simple
+      User=qdrant
+      WorkingDirectory=/opt/qdrant
+      ExecStart=/opt/qdrant/qdrant
+      Restart=always
+
+      [Install]
+      WantedBy=multi-user.target
+    dest: /etc/systemd/system/qdrant.service
+  become: yes
+  when: install_qdrant
+
+- name: Start Qdrant
+  systemd:
+    name: qdrant
+    state: started
+    enabled: yes
+  become: yes
+  when: install_qdrant

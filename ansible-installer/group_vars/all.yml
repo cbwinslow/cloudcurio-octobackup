@@ -1,0 +1,86 @@
+# Common variables for all hosts
+ansible_user: root  # or sudo user
+install_snyk: true
+install_node: true
+install_pnpm: true
+install_bun: true
+install_postgresql: true
+install_pgvector: true
+install_qdrant: true
+install_clickhouse: true
+install_influxdb: true
+install_cassandra: true
+install_minio: true
+install_docker: true
+install_docker_compose: true
+install_terraform_cloudflare: true
+install_pulumi: true
+install_graphite: true
+install_apache_httpd: true
+install_apache_tomcat: true
+install_apache_kafka: true
+install_apache_spark: true
+install_apache_hadoop: true
+install_localai: true
+install_anythingllm: true
+install_openwebui: true
+install_flowise: true
+install_n8n: true
+install_langfuse: true
+install_sentry: true
+install_biome: true
+install_homebrew: false  # Linux, but can be for macOS hosts
+install_gemini: true
+install_coderabbit: true
+install_opencode: true
+install_localrecall: true
+install_lmstudio: true
+install_qwen: true
+install_agentic_kgrag: true
+install_supabase: true
+install_fluentd: true
+install_kong: true
+install_traefik: true
+install_prometheus: true
+install_grafana: true
+install_loki: true
+install_netdata: true
+install_rabbitmq: true
+install_google_ai_sdk: true
+install_multiagent_langfuse: true
+install_a2a_autogen: true
+install_nebulagraph: true
+install_ollama: true
+install_service_manager: true
+
+# Network
+install_tailscale: true
+tailscale_auth_key: "your_tailscale_auth_key_here"  # From Tailscale admin
+install_zerotier: true
+zerotier_network_id: "your_zerotier_network_id_here"  # From ZeroTier Central
+
+# Coding Tools
+install_codex_cli: true
+install_gemini_cli: true
+install_qwen_cli: true
+install_coder_cli: true
+install_opencode: true
+install_homebrew: true
+install_npm: true
+install_npx: true
+install_uv: true
+install_python310: true
+install_pyenv: true
+install_python_dotenv: true
+# Add more toggles as needed
+
+# AI/UI Tools
+install_litellm: true
+install_openwebui: true
+install_forgecode: true  # Forgejo for code hosting
+
+# Tests
+run_app_tests: true
+run_worker_tests: true
+run_deployment_tests: true
+validate_pydantic: true

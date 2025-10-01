@@ -1,0 +1,8 @@
+---
+- name: Install UV (Python tool manager)
+  shell: curl -LsSf https://astral.sh/uv/install.sh | sh
+  when: install_uv
+
+- name: Verify UV
+  shell: uv --version
+  when: install_uv

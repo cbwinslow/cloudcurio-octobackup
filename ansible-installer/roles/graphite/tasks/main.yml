@@ -1,0 +1,28 @@
+---
+- name: Add Graphite repository
+  apt_repository:
+    repo: deb https://packages.grafana.com/oss/deb stable main
+    state: present
+  become: yes
+  when: install_graphite
+
+- name: Install Graphite (via Carbon/Cairo)
+  apt:
+    name:
+      - graphite-carbon
+      - graphite-web
+      - python3-cairo
+    state: present
+  become: yes
+  when: install_graphite
+
+- name: Start Graphite services
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop:
+    - carbon-cache
+    - graphite-web
+  become: yes
+  when: install_graphite

@@ -1,0 +1,8 @@
+---
+- name: Install Ollama
+  shell: curl -fsSL https://ollama.com/install.sh | sh
+  when: install_ollama
+
+- name: Pull embeddings model (e.g., all-MiniLM-L6-v2)
+  shell: ollama pull all-minilm
+  when: install_ollama

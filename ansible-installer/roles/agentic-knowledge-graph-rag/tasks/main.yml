@@ -1,0 +1,10 @@
+---
+# Agentic Knowledge Graph RAG; placeholder for custom setup
+- name: Install Neo4j for KG
+  shell: |
+    wget -O - https://debian.neo4j.com/neotechnology.gpg.key | sudo apt-key add -
+    echo 'deb http://debian.neo4j.com stable latest' | sudo tee /etc/apt/sources.list.d/neo4j.list
+    sudo apt update
+    sudo apt install neo4j
+    sudo systemctl start neo4j
+  when: install_agentic_kgrag

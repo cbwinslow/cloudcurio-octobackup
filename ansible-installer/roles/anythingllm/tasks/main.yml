@@ -1,0 +1,8 @@
+---
+- name: Install AnythingLLM (Node-based)
+  shell: |
+    git clone https://github.com/Mintplex-Labs/anything-llm /opt/anything-llm
+    cd /opt/anything-llm
+    npm install
+    npm run build
+  when: install_anythingllm

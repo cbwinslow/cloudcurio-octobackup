@@ -1,0 +1,14 @@
+---
+- name: Install Python 3.10
+  apt:
+    name: python3.10
+    state: present
+  become: yes
+  when: install_python310
+
+- name: Install Python 3.10 venv
+  apt:
+    name: python3.10-venv
+    state: present
+  become: yes
+  when: install_python310

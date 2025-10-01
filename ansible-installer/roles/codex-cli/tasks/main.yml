@@ -1,0 +1,6 @@
+---
+- name: Install GitHub Copilot CLI (Codex-like)
+  shell: npm install -g @githubnext/github-copilot-cli
+  become: yes
+  when: install_codex_cli
+  ignore_errors: yes  # If not available

@@ -1,0 +1,22 @@
+---
+- name: Install Docker for Supabase (self-hosted)
+  include_role:
+    name: docker
+  when: install_supabase
+
+- name: Clone Supabase self-hosting repo
+  git:
+    repo: https://github.com/supabase/self-hosting
+    dest: /opt/supabase
+    version: main
+  when: install_supabase
+
+- name: Copy Supabase env
+  template:
+    src: supabase.env.j2  # Create templates/supabase.env.j2 with vars like JWT_SECRET, ANON_KEY
+    dest: /opt/supabase/docker/.env
+  when: install_supabase
+
+- name: Start Supabase with Docker Compose
+  shell: cd /opt/supabase/docker && docker compose up -d
+  when: install_supabase

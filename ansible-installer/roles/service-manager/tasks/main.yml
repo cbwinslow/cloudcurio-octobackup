@@ -1,0 +1,25 @@
+---
+- name: Create systemd service for CloudCurio App
+  template:
+    src: cloudcurio-app.service.j2  # Template with ExecStart=pnpm start, WorkingDir=/opt/cloudcurio, port 3000
+    dest: /etc/systemd/system/cloudcurio-app.service
+  become: yes
+  notify: reload systemd
+
+- name: Create systemd service for Worker
+  template:
+    src: cloudcurio-worker.service.j2  # ExecStart=python worker/review_worker_v2.py
+    dest: /etc/systemd/system/cloudcurio-worker.service
+  become: yes
+  when: install_worker
+
+- name: Enable and start services
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+    daemon_reload: yes
+  loop:
+    - cloudcurio-app
+    - cloudcurio-worker
+  become: yes

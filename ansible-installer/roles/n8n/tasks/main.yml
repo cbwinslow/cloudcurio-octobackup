@@ -1,0 +1,5 @@
+---
+- name: Install n8n
+  shell: |
+    npm install n8n -g
+  when: install_n8n

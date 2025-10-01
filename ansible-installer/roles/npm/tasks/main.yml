@@ -1,0 +1,9 @@
+---
+- name: Install Node.js (includes npm)
+  include_role:
+    name: node-js
+  when: install_npm
+
+- name: Verify npm
+  shell: npm --version
+  when: install_npm

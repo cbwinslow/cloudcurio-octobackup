@@ -1,0 +1,15 @@
+---
+- name: Install ZeroTier
+  shell: curl -s https://install.zerotier.com | sudo bash
+  become: yes
+  when: install_zerotier
+
+- name: Join ZeroTier network
+  shell: sudo zerotier-cli join {{ zerotier_network_id }}
+  become: yes
+  when: install_zerotier and zerotier_network_id is defined
+
+- name: Authorize in ZeroTier Central (manual step or API)
+  debug:
+    msg: "Authorize {{ inventory_hostname }} in ZeroTier Central after join"
+  when: install_zerotier

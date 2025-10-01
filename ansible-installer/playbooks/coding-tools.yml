@@ -1,0 +1,17 @@
+---
+- name: Install terminal coding tools
+  hosts: all
+  become: yes
+  roles:
+    - codex-cli
+    - gemini-cli
+    - qwen-cli
+    - coder-cli
+    - opencode
+    - homebrew
+    - npm
+    - npx
+    - uv
+    - python310
+    - pyenv
+    - python-dotenv

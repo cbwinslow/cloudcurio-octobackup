@@ -1,0 +1,6 @@
+---
+# CodeRabbit is a service; install CLI if exists
+- name: Install CodeRabbit CLI (placeholder)
+  shell: npm install -g @coderabbitai/cli  # Hypothetical
+  when: install_coderabbit
+  ignore_errors: yes

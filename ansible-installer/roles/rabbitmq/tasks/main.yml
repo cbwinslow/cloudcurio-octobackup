@@ -1,0 +1,29 @@
+---
+- name: Add RabbitMQ repository
+  apt_repository:
+    repo: deb https://packagecloud.io/rabbitmq/rabbitmq-server/ubuntu/ {{ ansible_distribution_release }} main
+    state: present
+  become: yes
+  when: install_rabbitmq
+
+- name: Add RabbitMQ GPG key
+  apt_key:
+    url: https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey
+    state: present
+  become: yes
+  when: install_rabbitmq
+
+- name: Install RabbitMQ
+  apt:
+    name: rabbitmq-server
+    state: present
+  become: yes
+  when: install_rabbitmq
+
+- name: Start RabbitMQ
+  systemd:
+    name: rabbitmq-server
+    state: started
+    enabled: yes
+  become: yes
+  when: install_rabbitmq

@@ -1,0 +1,6 @@
+---
+- name: Install Sentry (self-hosted via Docker, but baremetal complex; use on-prem installer)
+  shell: |
+    curl -sL https://sentry.io/welcome/ | bash -s self-hosted
+  when: install_sentry
+  # Note: Sentry self-hosted is Docker-based; baremetal not straightforward

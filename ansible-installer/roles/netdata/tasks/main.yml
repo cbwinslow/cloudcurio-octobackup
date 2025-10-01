@@ -1,0 +1,4 @@
+---
+- name: Add Netdata repository
+  shell: bash <(curl -Ss https://my-netdata.io/kickstart.sh) --dont-wait
+  when: install_netdata

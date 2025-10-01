@@ -1,0 +1,5 @@
+---
+# Qwen is Alibaba LLM; install via HuggingFace or local
+- name: Install Qwen dependencies
+  shell: pip install transformers torch
+  when: install_qwen

@@ -1,0 +1,29 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  become: yes
+
+- name: Install basic packages
+  apt:
+    name:
+      - curl
+      - wget
+      - git
+      - vim
+      - htop
+      - ufw
+    state: present
+  become: yes
+
+- name: Enable UFW
+  ufw:
+    state: enabled
+    policy: allow
+  become: yes
+
+- name: Allow SSH
+  ufw:
+    rule: allow
+    port: '22'
+  become: yes

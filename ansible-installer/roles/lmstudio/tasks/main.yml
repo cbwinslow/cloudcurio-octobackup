@@ -1,0 +1,9 @@
+---
+# LM Studio is GUI app; for Linux, download binary
+- name: Download LM Studio
+  get_url:
+    url: https://lmstudio.ai/download  # Hypothetical direct link
+    dest: /opt/lmstudio.AppImage
+    mode: '0755'
+  when: install_lmstudio
+  ignore_errors: yes

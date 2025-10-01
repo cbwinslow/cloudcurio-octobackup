@@ -1,0 +1,22 @@
+---
+- name: Add Fluentd repository
+  apt_repository:
+    repo: deb https://packages.fluentd.org/debian stable main
+    state: present
+  become: yes
+  when: install_fluentd
+
+- name: Install Fluentd
+  apt:
+    name: td-agent
+    state: present
+  become: yes
+  when: install_fluentd
+
+- name: Start Fluentd
+  systemd:
+    name: td-agent
+    state: started
+    enabled: yes
+  become: yes
+  when: install_fluentd

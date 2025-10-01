@@ -1,0 +1,14 @@
+---
+- name: Install Google AI SDK (Python)
+  pip:
+    name: google-generativeai
+    state: present
+  become: yes
+  when: install_google_ai_sdk
+
+- name: Install Google AI SDK (Node.js)
+  npm:
+    name: @google/generative-ai
+    global: yes
+  become: yes
+  when: install_google_ai_sdk

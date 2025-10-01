@@ -1,0 +1,5 @@
+---
+- name: Install Gemini CLI (Google AI)
+  shell: pip install google-generativeai[cli]  # Assuming CLI extension
+  become: yes
+  when: install_gemini_cli

@@ -1,0 +1,11 @@
+---
+- name: Test full deployment
+  hosts: all
+  become: yes
+  roles:
+    - test-suite
+  vars:
+    run_app_tests: true
+    run_worker_tests: true
+    run_deployment_tests: true
+    validate_pydantic: true

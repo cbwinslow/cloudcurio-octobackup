@@ -1,0 +1,22 @@
+---
+- name: Add Prometheus repository
+  apt_repository:
+    repo: deb https://packages.prometheus.io/deb stable main
+    state: present
+  become: yes
+  when: install_prometheus
+
+- name: Install Prometheus
+  apt:
+    name: prometheus
+    state: present
+  become: yes
+  when: install_prometheus
+
+- name: Start Prometheus
+  systemd:
+    name: prometheus
+    state: started
+    enabled: yes
+  become: yes
+  when: install_prometheus

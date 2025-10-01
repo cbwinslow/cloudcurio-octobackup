@@ -1,0 +1,35 @@
+---
+- name: Add Apache Cassandra repository
+  apt_repository:
+    repo: deb https://debian.cassandra.apache.org 40x main
+    state: present
+  become: yes
+  when: install_cassandra
+
+- name: Add Cassandra GPG key
+  apt_key:
+    url: https://downloads.apache.org/cassandra/KEYS
+    state: present
+  become: yes
+  when: install_cassandra
+
+- name: Install Cassandra
+  apt:
+    name: cassandra
+    state: present
+  become: yes
+  when: install_cassandra
+
+- name: Start Cassandra
+  systemd:
+    name: cassandra
+    state: started
+    enabled: yes
+  become: yes
+  when: install_cassandra
+
+- name: Configure Cassandra for document storage (keyspace for docs)
+  shell: |
+    cqlsh -e "CREATE KEYSPACE IF NOT EXISTS docs WITH REPLICATION = {'class': 'SimpleStrategy', 'replication_factor': 1};"
+  become: yes
+  when: install_cassandra

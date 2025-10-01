@@ -1,0 +1,29 @@
+---
+- name: Add InfluxDB GPG key
+  apt_key:
+    url: https://repos.influxdata.com/influxdb2.key
+    state: present
+  become: yes
+  when: install_influxdb
+
+- name: Add InfluxDB repository
+  apt_repository:
+    repo: deb https://repos.influxdata.com/debian stable main
+    state: present
+  become: yes
+  when: install_influxdb
+
+- name: Install InfluxDB
+  apt:
+    name: influxdb2
+    state: present
+  become: yes
+  when: install_influxdb
+
+- name: Start InfluxDB
+  systemd:
+    name: influxdb
+    state: started
+    enabled: yes
+  become: yes
+  when: install_influxdb

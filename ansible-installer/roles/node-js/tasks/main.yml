@@ -1,0 +1,12 @@
+---
+- name: Install Node.js from nodesource
+  shell: |
+    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+  become: yes
+  when: install_node
+
+- name: Verify Node.js installation
+  command: node --version
+  register: node_version
+  changed_when: false

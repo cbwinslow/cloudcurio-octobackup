@@ -1,0 +1,31 @@
+---
+- name: Install PostgreSQL
+  apt:
+    name:
+      - postgresql
+      - postgresql-contrib
+    state: present
+  become: yes
+  when: install_postgresql
+
+- name: Start and enable PostgreSQL
+  systemd:
+    name: postgresql
+    state: started
+    enabled: yes
+  become: yes
+
+- name: Create database user
+  become: yes
+  become_user: postgres
+  postgresql_user:
+    name: "{{ db_user | default('cloudcurio') }}"
+    password: "{{ db_password | default('password') }}"
+    role_attr_flags: CREATEDB,LOGIN
+
+- name: Create database
+  become: yes
+  become_user: postgres
+  postgresql_db:
+    name: "{{ db_name | default('cloudcurio') }}"
+    owner: "{{ db_user | default('cloudcurio') }}"

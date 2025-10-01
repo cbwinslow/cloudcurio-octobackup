@@ -1,0 +1,10 @@
+---
+- name: Install pnpm globally
+  shell: npm install -g pnpm
+  become: yes
+  when: install_pnpm
+
+- name: Verify pnpm installation
+  command: pnpm --version
+  register: pnpm_version
+  changed_when: false

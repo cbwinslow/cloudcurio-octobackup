@@ -1,0 +1,5 @@
+---
+- name: Install Homebrew on Linux
+  shell: |
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  when: install_homebrew and ansible_os_family == "Debian"

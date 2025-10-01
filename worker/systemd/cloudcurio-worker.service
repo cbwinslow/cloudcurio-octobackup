@@ -1,0 +1,19 @@
+[Unit]
+Description=CloudCurio GPU Review Worker v2
+After=network-online.target docker.service
+Wants=network-online.target docker.service
+[Service]
+Type=simple
+Environment=API_BASE=https://cloudcurio.cc
+Environment=WORKER_TOKEN=***set_me***
+Environment=GPU_MAPPING={"rtx3060":"0","k80:0":"1","k80:1":"2","k40":"3"}
+Environment=GPU_CLASSES={"rtx3060":"quick","k80:0":"heavy","k80:1":"heavy","k40":"legacy"}
+Environment=REPOS_BASE_DIR=/var/lib/cloudcurio/repos
+Environment=CONTAINER_IMAGE=ghcr.io/<you>/cloudcurio-review:latest
+ExecStart=/usr/bin/python3 /opt/cloudcurio/review_worker_v2.py
+Restart=always
+RestartSec=5
+User=cloudcurio
+Group=cloudcurio
+[Install]
+WantedBy=multi-user.target

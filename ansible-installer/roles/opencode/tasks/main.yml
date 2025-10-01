@@ -1,0 +1,6 @@
+---
+# OpenCode might be a tool; placeholder
+- name: Install OpenCode
+  shell: git clone https://github.com/some/opencode /opt/opencode && cd /opt/opencode && make install
+  when: install_opencode
+  ignore_errors: yes

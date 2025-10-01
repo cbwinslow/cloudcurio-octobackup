@@ -1,0 +1,11 @@
+---
+- name: Download NebulaGraph
+  shell: |
+    wget https://github.com/vesoft-inc/nebula/releases/download/v3.8.0/nebula-graph-3.8.0-ubuntu20.04.x86_64.tar.gz
+    tar -xzf nebula-graph-3.8.0-ubuntu20.04.x86_64.tar.gz -C /opt/
+  when: install_nebulagraph
+
+- name: Start NebulaGraph services (Studio, Graphd, Metad, Storaged)
+  shell: /opt/nebula-graph-3.8.0-ubuntu20.04.x86_64/sbin/nebula.service start all
+  become: yes
+  when: install_nebulagraph

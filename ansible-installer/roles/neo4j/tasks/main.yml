@@ -1,0 +1,11 @@
+---
+- name: Install Neo4j (enhanced)
+  shell: |
+    wget -O - https://debian.neo4j.com/neotechnology.gpg.key | apt-key add -
+    echo 'deb http://debian.neo4j.com stable latest' > /etc/apt/sources.list.d/neo4j.list
+    apt update
+    apt install neo4j -y
+    systemctl start neo4j
+    systemctl enable neo4j
+  become: yes
+  when: install_neo4j

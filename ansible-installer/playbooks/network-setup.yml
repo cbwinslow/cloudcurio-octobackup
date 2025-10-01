@@ -1,0 +1,10 @@
+---
+- name: Setup Tailscale and ZeroTier networks
+  hosts: all
+  become: yes
+  roles:
+    - tailscale
+    - zerotier
+  vars:
+    tailscale_auth_key: "{{ vault_tailscale_auth_key | default(omit) }}"
+    zerotier_network_id: "{{ zerotier_network_id | default('your_network_id') }}"

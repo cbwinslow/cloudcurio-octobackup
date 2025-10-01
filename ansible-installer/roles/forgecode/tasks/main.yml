@@ -1,0 +1,36 @@
+---
+# Assuming ForgeCode as Forgejo (self-hosted Git) or code forge tool; adapt
+- name: Install Forgejo (self-hosted GitHub alternative)
+  shell: |
+    wget https://dl.forgejo.org/server/forgejo-1.21.10-0-linux-amd64 -O /usr/local/bin/forgejo
+    chmod +x /usr/local/bin/forgejo
+    mkdir -p /opt/forgejo/data
+  become: yes
+  when: install_forgecode
+
+- name: Create Forgejo systemd service
+  copy:
+    content: |
+      [Unit]
+      Description=Forgejo
+      After=network.target
+
+      [Service]
+      ExecStart=/usr/local/bin/forgejo web --config /opt/forgejo/app.ini
+      WorkingDirectory=/opt/forgejo
+      User=git
+      Restart=always
+
+      [Install]
+      WantedBy=multi-user.target
+    dest: /etc/systemd/system/forgejo.service
+  become: yes
+  when: install_forgecode
+
+- name: Start Forgejo
+  systemd:
+    name: forgejo
+    state: started
+    enabled: yes
+  become: yes
+  when: install_forgecode

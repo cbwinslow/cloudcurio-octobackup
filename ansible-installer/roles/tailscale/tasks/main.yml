@@ -1,0 +1,18 @@
+---
+- name: Install Tailscale
+  shell: curl -fsSL https://tailscale.com/install.sh | sh
+  become: yes
+  when: install_tailscale
+
+- name: Enable and start Tailscale
+  systemd:
+    name: tailscaled
+    state: started
+    enabled: yes
+  become: yes
+  when: install_tailscale
+
+- name: Join Tailscale network (use auth key from vars)
+  shell: tailscale up --authkey={{ tailscale_auth_key }}
+  become: yes
+  when: install_tailscale and tailscale_auth_key is defined

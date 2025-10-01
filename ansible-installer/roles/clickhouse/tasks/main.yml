@@ -1,0 +1,25 @@
+---
+- name: Add ClickHouse repository
+  apt_repository:
+    repo: deb https://packages.clickhouse.com/deb stable/ main/
+    state: present
+    filename: clickhouse
+  become: yes
+  when: install_clickhouse
+
+- name: Install ClickHouse
+  apt:
+    name:
+      - clickhouse-server
+      - clickhouse-client
+    state: present
+  become: yes
+  when: install_clickhouse
+
+- name: Start ClickHouse
+  systemd:
+    name: clickhouse-server
+    state: started
+    enabled: yes
+  become: yes
+  when: install_clickhouse

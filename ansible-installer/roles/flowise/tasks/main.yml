@@ -1,0 +1,7 @@
+---
+- name: Install Flowise
+  shell: |
+    git clone https://github.com/FlowiseAI/Flowise /opt/flowise
+    cd /opt/flowise
+    npm install
+  when: install_flowise

@@ -1,0 +1,5 @@
+---
+# Assuming Google Gemini CLI or SDK
+- name: Install Google Gemini SDK
+  shell: pip install google-generativeai
+  when: install_gemini
