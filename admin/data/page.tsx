@@ -1,0 +1,1 @@
+// Admin data page placeholder
