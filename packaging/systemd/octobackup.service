@@ -1,0 +1,13 @@
+[Unit]
+Description=CloudCurio OctoBackup
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/octobackup
+Restart=on-failure
+Environment=BORG_PASSPHRASE=
+
+[Install]
+WantedBy=multi-user.target
